@@ -5,17 +5,21 @@ import ProductItem from "./ProductItem";
 import SearchBar from "./SearchBar";
 // Data
 import products from "../products";
+import { useState } from "react";
 
 const ProductList = () => {
-  const productList = products.map((product) => (
-    <ProductItem product={product} key={product.id} />
-  ));
+  const [query, setQuery] = useState("");
+  let arrayOfProducts = products
+    .filter((product) =>
+      product.name.toLowerCase().includes(query.toLowerCase())
+    )
+    .map((product) => <ProductItem key={product.id} product={product} />);
 
   return (
-    <>
-      <SearchBar />
-      <ListWrapper>{productList}</ListWrapper>
-    </>
+    <product>
+      <SearchBar setQuery={setQuery} />
+      <ListWrapper>{arrayOfProducts}</ListWrapper>
+    </product>
   );
 };
 
