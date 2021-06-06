@@ -7,13 +7,19 @@ import SearchBar from "./SearchBar";
 import products from "../products";
 import { useState } from "react";
 
-const ProductList = () => {
+const ProductList = (props) => {
   const [query, setQuery] = useState("");
   let arrayOfProducts = products
     .filter((product) =>
       product.name.toLowerCase().includes(query.toLowerCase())
     )
-    .map((product) => <ProductItem key={product.id} product={product} />);
+    .map((product) => (
+      <ProductItem
+        setProduct={props.setProduct}
+        key={product.id}
+        product={product}
+      />
+    ));
 
   return (
     <product>

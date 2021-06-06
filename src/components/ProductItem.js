@@ -6,9 +6,13 @@ const ProductItem = (props) => {
 
   return (
     <ProductWrapper>
-      <img alt={product.name} src={product.image} />
-      <p>{product.name}</p>
-      <p className="product-price">{product.price} KD</p>
+      <img
+        alt={props.product.name}
+        onClick={() => props.setProduct(product)}
+        src={props.product.image}
+      />
+      <p>{props.product.name}</p>
+      <p className="product-price">{props.product.price} KD</p>
     </ProductWrapper>
   );
 };
