@@ -13,6 +13,7 @@ const ProductItem = (props) => {
       />
       <p>{props.product.name}</p>
       <p className="product-price">{props.product.price} KD</p>
+      <button onClick={() => props.Filterd(props.product.id)}> DELETE </button>
     </ProductWrapper>
   );
 };

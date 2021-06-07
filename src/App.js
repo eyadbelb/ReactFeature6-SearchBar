@@ -7,7 +7,7 @@ import ProductList from "./components/ProductList";
 import { ThemeProvider } from "styled-components";
 import { useState } from "react";
 import ProductDetail from "./components/ProductDetail";
-import products from "./products";
+import _products from "./products";
 const theme = {
   light: {
     mainColor: "#242424", // main font color
@@ -24,7 +24,14 @@ const theme = {
 };
 
 function App() {
+  const [newproducts, setNewProducts] = useState(_products);
+
   const [currentTheme, setCurrentTheme] = useState("light");
+  const Filterd = (CookieId) => {
+    console.log("HI");
+    setNewProducts(newproducts.filter((product) => product.id !== CookieId));
+    setNewProducts(null);
+  };
 
   const toggleTheme = () =>
     setCurrentTheme(currentTheme === "light" ? "dark" : "light");
@@ -34,7 +41,13 @@ function App() {
     if (product)
       return <ProductDetail product={product} setProduct={setProduct} />;
     else {
-      return <ProductList setProduct={setProduct} />;
+      return (
+        <ProductList
+          Filterd={Filterd}
+          products={newproducts}
+          setProduct={setProduct}
+        />
+      );
     }
   };
 
